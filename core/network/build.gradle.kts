@@ -16,7 +16,9 @@ android {
     namespace = "${AppConfig.applicationId}.core.network"
     compileSdk = AppConfig.compileSdk
 
+
     defaultConfig {
+        minSdk = AppConfig.minSdk
         buildConfigField("String", "WEATHER_API_KEY",
             apikeyProperties["WEATHER_API_KEY"].toString()
         )
@@ -42,11 +44,10 @@ android {
         }
     }
 
-    hilt {
-        enableAggregatingTask = false
-    }
 
 }
+
+
 
 dependencies {
 
@@ -58,6 +59,8 @@ dependencies {
     implementation(libs.okhttp)
     implementation(libs.okhttp.logging.interceptor)
     implementation(libs.hilt.android)
+    implementation(libs.moshi.kotlin)
     ksp(libs.hilt.android.compiler)
+    ksp(libs.moshi.kotlin.codegen)
     implementation(libs.timber)
 }

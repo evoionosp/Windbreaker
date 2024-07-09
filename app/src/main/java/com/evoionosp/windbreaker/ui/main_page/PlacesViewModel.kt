@@ -3,7 +3,7 @@ package com.evoionosp.windbreaker.ui.main_page
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.evoionosp.windbreaker.core.data.repository.WeatherNetworkRepository
-import com.evoionosp.windbreaker.core.model.WeatherDetails
+import com.evoionosp.windbreaker.core.data.model.WeatherDetails
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow

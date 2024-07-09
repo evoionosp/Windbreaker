@@ -1,6 +1,6 @@
 package com.evoionosp.windbreaker.core.data.repository
 
-import com.evoionosp.windbreaker.core.model.WeatherDetails
+import com.evoionosp.windbreaker.core.data.model.WeatherDetails
 import kotlinx.coroutines.flow.Flow
 
 

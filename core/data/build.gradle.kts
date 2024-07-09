@@ -6,7 +6,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.hilt.plugin)
-    alias(libs.plugins.kapt)
+    alias(libs.plugins.ksp)
 }
 
 
@@ -14,7 +14,9 @@ android {
     namespace = "${AppConfig.applicationId}.core.data"
     compileSdk = AppConfig.compileSdk
 
-
+    defaultConfig {
+        minSdk = AppConfig.minSdk
+    }
 
     compileOptions {
         sourceCompatibility = AppConfig.sourceCompatibility
@@ -36,16 +38,13 @@ android {
         }
     }
 
-    hilt {
-        enableAggregatingTask = false
-    }
-
 
 }
 
+
+
 dependencies {
 
-    implementation(project(":core:model"))
     implementation(project(":core:network"))
 
     implementation(libs.androidx.core.ktx)
@@ -56,6 +55,6 @@ dependencies {
     implementation(libs.okhttp)
     implementation(libs.okhttp.logging.interceptor)
     implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
+    ksp(libs.hilt.android.compiler)
     implementation(libs.timber)
 }

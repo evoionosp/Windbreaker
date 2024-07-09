@@ -2,7 +2,7 @@ package com.evoionosp.windbreaker.core.data.repository.impl
 
 import com.evoionosp.windbreaker.core.data.repository.SavedPlacesRepository
 import com.evoionosp.windbreaker.core.data.repository.WeatherNetworkRepository
-import com.evoionosp.windbreaker.core.model.WeatherDetails
+import com.evoionosp.windbreaker.core.data.model.WeatherDetails
 import com.evoionosp.windbreaker.core.network.WeatherDetailsApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest

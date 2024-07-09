@@ -3,8 +3,10 @@ package com.evoionosp.windbreaker.core.data.repository.impl
 import com.evoionosp.windbreaker.core.data.repository.SavedPlacesRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
+import javax.inject.Inject
 
-class SavedPlacesRepositoryImpl : SavedPlacesRepository{
+
+class SavedPlacesRepositoryImpl @Inject constructor(): SavedPlacesRepository{
 
     override suspend fun getSavedCities() : Flow<List<String>> = flowOf(
         listOf(

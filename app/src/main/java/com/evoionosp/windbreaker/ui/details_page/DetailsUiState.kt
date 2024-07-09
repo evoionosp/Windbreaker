@@ -1,7 +1,7 @@
 package com.evoionosp.windbreaker.ui.details_page
 
 import android.icu.util.MeasureUnit
-import com.evoionosp.windbreaker.core.model.WeatherDetails
+import com.evoionosp.windbreaker.core.data.model.WeatherDetails
 import com.evoionosp.windbreaker.util.formatTemperature
 
 data class  DetailsUiState(

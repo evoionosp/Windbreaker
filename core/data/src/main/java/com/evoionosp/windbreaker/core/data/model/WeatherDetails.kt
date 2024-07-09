@@ -1,4 +1,4 @@
-package com.evoionosp.windbreaker.core.model
+package com.evoionosp.windbreaker.core.data.model
 
 data class WeatherDetails(
     val lat: Double = 0.0,
