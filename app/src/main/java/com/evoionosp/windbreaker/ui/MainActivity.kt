@@ -3,6 +3,7 @@ package com.evoionosp.windbreaker.ui
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import com.evoionosp.windbreaker.ui.main_page.ImprovedMainScreen
 import com.evoionosp.windbreaker.ui.main_page.MainScreen
 import com.evoionosp.windbreaker.ui.theme.AppTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -15,7 +16,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             AppTheme {
                 Timber.tag(TAG).d("Weather App Mail Activity")
-                MainScreen()
+                ImprovedMainScreen()
             }
         }
     }

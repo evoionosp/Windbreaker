@@ -21,6 +21,10 @@ import timber.log.Timber
 fun MainScreen(modifier: Modifier = Modifier) {
     val viewModel = hiltViewModel<PlacesViewModel>()
     val uiState by viewModel.weatherListState.collectAsState(initial = WeatherListState())
+
+    val TAG = "MainScreen"
+
+
     AppTheme {
         Surface(
             modifier = Modifier.fillMaxSize(),
@@ -63,4 +67,3 @@ fun MainScreen(modifier: Modifier = Modifier) {
     }
 }
 
-const val TAG = "MainScreen"

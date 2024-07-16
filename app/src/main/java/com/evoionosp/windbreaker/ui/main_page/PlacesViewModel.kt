@@ -43,11 +43,17 @@ class PlacesViewModel @Inject constructor(
         }
     }
 
-    init {
+    fun loadWeather() {
+        Timber.tag(TAG).d("onRefresh")
         if(!loadWeatherJob.isActive) {
-           // _weatherListState.value = _weatherListState.value.copy(isLoading = true)
             loadWeatherJob.start()
+        } else {
+            Timber.tag(TAG).d("Already running previous job")
         }
+    }
+
+    init {
+        loadWeather()
     }
 
 
