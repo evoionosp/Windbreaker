@@ -1,42 +1,35 @@
-package com.evoionosp.windbreaker.ui.main_page
+package com.evoionosp.windbreaker.ui.place_list_page
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LinearProgressIndicator
-
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import androidx.compose.material3.pulltorefresh.PullToRefreshBox
+import androidx.compose.material3.pulltorefresh.pullToRefresh
+import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.pulltorefresh.PullToRefreshBox
-import androidx.compose.material3.pulltorefresh.PullToRefreshState
-import androidx.compose.material3.pulltorefresh.pullToRefresh
-import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.evoionosp.windbreaker.ui.components.SimpleTopAppBar
-import com.evoionosp.windbreaker.ui.theme.AppTheme
+import com.evoionosp.windbreaker.ui.details_page.WeatherDetailsPage
+import kotlinx.serialization.Serializable
 import timber.log.Timber
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ImprovedMainScreen(modifier: Modifier = Modifier) {
-    val viewModel = hiltViewModel<PlacesViewModel>()
+fun PlaceListScreen(navController: NavController) {
+    val viewModel = hiltViewModel<PlaceListViewModel>()
     val uiState by viewModel.weatherListState.collectAsState(initial = WeatherListState())
     val pullToRefreshState = rememberPullToRefreshState()
+    val TAG = "PlaceListScreen"
 
-    val TAG = "ImprovedMainScreen"
 
     Scaffold(
         modifier = Modifier.pullToRefresh(
@@ -65,7 +58,10 @@ fun ImprovedMainScreen(modifier: Modifier = Modifier) {
 
             ) {
                 items(items = uiState.weatherList, itemContent = { content ->
-                    PlaceWeatherListItem(place = content)
+                    PlaceListItem(
+                        place = content,
+                        onItemClick = { navController.navigate(WeatherDetailsPage) }
+                    )
                 })
             }
 
@@ -75,3 +71,7 @@ fun ImprovedMainScreen(modifier: Modifier = Modifier) {
         }
     }
 }
+
+@Serializable
+object PlacesListPage
+

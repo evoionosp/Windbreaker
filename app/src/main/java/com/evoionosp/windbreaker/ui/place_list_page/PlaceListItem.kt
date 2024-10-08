@@ -1,4 +1,4 @@
-package com.evoionosp.windbreaker.ui.main_page
+package com.evoionosp.windbreaker.ui.place_list_page
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
@@ -21,8 +21,9 @@ import com.evoionosp.windbreaker.util.kelvinToCelsius
 
 
 @Composable
-fun PlaceWeatherListItem(
-    place: WeatherDetails
+fun PlaceListItem(
+    place: WeatherDetails,
+    onItemClick: () -> Unit
 ) {
     Row(
         modifier = Modifier

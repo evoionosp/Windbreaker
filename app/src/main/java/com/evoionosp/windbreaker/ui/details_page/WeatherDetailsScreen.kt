@@ -8,12 +8,32 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
+import com.evoionosp.windbreaker.core.data.model.WeatherDetails
 import com.evoionosp.windbreaker.ui.components.NoNetwork
+import com.evoionosp.windbreaker.ui.components.SimpleTopAppBar
+import kotlinx.serialization.Serializable
 
 @Composable
-fun DetailsScreen() {
-    val viewModel = hiltViewModel<DetailsViewModel>()
+fun WeatherDetailsScreen(weatherDetailsPage: WeatherDetailsPage, navController: NavController) {
+    val viewModel = hiltViewModel<WeatherDetailsViewModel>()
     val uiState = viewModel.uiState
+
+    uiState.copy(
+        place = weatherDetailsPage.place,
+        temp = weatherDetailsPage.temperature,
+        feelsLike = weatherDetailsPage.feelsLike,
+        weatherCondition = weatherDetailsPage.weatherCondition,
+//        windSpeed = weatherDetailsPage.windSpeed,
+//        pressure = weatherDetailsPage.pressure,
+//        humidity = weatherDetailsPage.humidity,
+    )
+
+
+    Column {
+        SimpleTopAppBar(title = weatherDetailsPage.place)
+    }
+
 
     if (uiState.offline) {
         NoNetwork()
@@ -27,25 +47,36 @@ fun DetailsScreen() {
             Column {
                 Text(
                     modifier = Modifier.padding(start = 16.dp),
-                    text = uiState.details.city,
+                    text = uiState.place,
                     color = MaterialTheme.colorScheme.onBackground
                 )
                 Text(
                     modifier = Modifier.padding(start = 16.dp, top = 16.dp),
-                    text = uiState.fTemp,
+                    text = uiState.temperature,
                     color = MaterialTheme.colorScheme.onBackground
                 )
                 Text(
                     modifier = Modifier.padding(start = 16.dp, top = 16.dp),
-                    text = uiState.fTempMax,
+                    text = uiState.temperatureMax,
                     color = MaterialTheme.colorScheme.onBackground
                 )
                 Text(
                     modifier = Modifier.padding(start = 16.dp, top = 16.dp),
-                    text = uiState.fTempMin,
+                    text = uiState.temperatureMin,
                     color = MaterialTheme.colorScheme.onBackground
                 )
             }
         }
     }
 }
+
+@Serializable
+data class WeatherDetailsPage(
+    val place: String,
+    val temperature: Double,
+    val feelsLike: Double,
+    val windSpeed: Double,
+    val pressure: Int,
+    val humidity: Int,
+    val weatherCondition: String,
+)

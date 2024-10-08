@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt.plugin)
+    kotlin("plugin.serialization") version "2.0.20"
 }
 
 android {
@@ -73,6 +74,7 @@ dependencies {
    // implementation(libs.androidx.swipeRefresh)
     implementation(libs.androidx.recyclerview)
     implementation(libs.navigation.compose)
+    implementation(libs.kotlinx.serialization.json)
     implementation(libs.timber)
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation.compose)
