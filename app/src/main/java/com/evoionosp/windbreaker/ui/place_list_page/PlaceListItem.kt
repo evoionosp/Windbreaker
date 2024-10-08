@@ -1,6 +1,7 @@
 package com.evoionosp.windbreaker.ui.place_list_page
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -27,6 +28,7 @@ fun PlaceListItem(
 ) {
     Row(
         modifier = Modifier
+            .clickable { onItemClick() }
             .padding(16.dp)
             .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically

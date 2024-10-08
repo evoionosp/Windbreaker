@@ -21,11 +21,8 @@ class WeatherDetailsViewModel @Inject constructor(
 ) : ViewModel() {
 
     var uiState by mutableStateOf(WeatherDetailsUiState())
-        private set
+        public set
 
-    init {
-        
-    }
 
 
     fun loadWeatherDetails() {
