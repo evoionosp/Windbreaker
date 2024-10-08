@@ -1,4 +1,4 @@
-package com.evoionosp.windbreaker.ui.main_page
+package com.evoionosp.windbreaker.ui.place_list_page
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -20,7 +20,7 @@ data class WeatherListState(
     val isLoading: Boolean = false
 )
 @HiltViewModel
-class PlacesViewModel @Inject constructor(
+class PlaceListViewModel @Inject constructor(
     private val weatherNetworkRepository: WeatherNetworkRepository
 ) : ViewModel() {
 

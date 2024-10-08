@@ -3,9 +3,7 @@ package com.evoionosp.windbreaker.ui
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.evoionosp.windbreaker.ui.main_page.ImprovedMainScreen
-import com.evoionosp.windbreaker.ui.main_page.MainScreen
-import com.evoionosp.windbreaker.ui.theme.AppTheme
+import com.evoionosp.windbreaker.ui.entry.EntryPoint
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -13,11 +11,9 @@ import timber.log.Timber
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Timber.tag(TAG).d("Weather App Main Activity")
         setContent {
-            AppTheme {
-                Timber.tag(TAG).d("Weather App Mail Activity")
-                ImprovedMainScreen()
-            }
+            EntryPoint()
         }
     }
 

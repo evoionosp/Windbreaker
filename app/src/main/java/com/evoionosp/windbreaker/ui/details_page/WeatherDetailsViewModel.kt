@@ -7,6 +7,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.evoionosp.windbreaker.core.data.repository.WeatherNetworkRepository
+import dagger.assisted.Assisted
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -14,22 +15,29 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
-class DetailsViewModel @Inject constructor(
+class WeatherDetailsViewModel @Inject constructor(
     private val weatherNetworkRepository: WeatherNetworkRepository,
-    savedStateHandle: SavedStateHandle,
+    savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private var place: String? = "Peterborough,CA"
-    var uiState by mutableStateOf(DetailsUiState())
+    var uiState by mutableStateOf(WeatherDetailsUiState())
         private set
 
     init {
-        place?.let {
+        
+    }
+
+
+    fun loadWeatherDetails() {
+        uiState.place?.let {
             viewModelScope.launch(Dispatchers.IO) {
-                weatherNetworkRepository.getWeatherDetails(it).collect { detail ->
+                weatherNetworkRepository.getWeatherDetails(it).collect { response ->
                     withContext(Dispatchers.Main) {
                         uiState = uiState.copy(
-                            details = detail,
+                            temp = response.temperature,
+                            tempMin = response.temperatureMin,
+                            tempMax = response.temperatureMax,
+                            weatherCondition = response.weatherCondition,
                             offline = false
                         )
                     }
