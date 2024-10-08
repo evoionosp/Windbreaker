@@ -60,7 +60,16 @@ fun PlaceListScreen(navController: NavController) {
                 items(items = uiState.weatherList, itemContent = { content ->
                     PlaceListItem(
                         place = content,
-                        onItemClick = { navController.navigate(WeatherDetailsPage) }
+                        onItemClick = { navController.navigate(WeatherDetailsPage(
+                            place = content.city + ", " + content.country,
+                            temperature = content.temperature,
+                            feelsLike = content.feelsLike,
+                            weatherCondition = content.weatherCondition,
+                            windSpeed = content.windSpeed,
+                            pressure = content.pressure,
+                            humidity = content.humidity
+                            ))
+                            }
                     )
                 })
             }

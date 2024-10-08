@@ -27,6 +27,7 @@ androidx-hilt = "1.2.0"
 jetbrainsKotlinJvm = "2.0.0"
 recyclerview = "1.3.2"
 material3 = "1.3.0"
+jetbrainsKotlinSerialization = "2.0.0"
 
 
 
@@ -93,6 +94,7 @@ material = { group = "com.google.android.material", name = "material", version.r
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+jetbrains-kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "jetbrainsKotlinSerialization" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 hilt-plugin = {id = "com.google.dagger.hilt.android", version.ref = "hilt"}

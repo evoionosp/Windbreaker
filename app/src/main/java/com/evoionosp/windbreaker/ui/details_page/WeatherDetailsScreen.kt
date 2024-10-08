@@ -1,5 +1,6 @@
 package com.evoionosp.windbreaker.ui.details_page
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.MaterialTheme
@@ -9,17 +10,24 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import androidx.navigation.toRoute
 import com.evoionosp.windbreaker.core.data.model.WeatherDetails
 import com.evoionosp.windbreaker.ui.components.NoNetwork
 import com.evoionosp.windbreaker.ui.components.SimpleTopAppBar
 import kotlinx.serialization.Serializable
 
 @Composable
-fun WeatherDetailsScreen(weatherDetailsPage: WeatherDetailsPage, navController: NavController) {
-    val viewModel = hiltViewModel<WeatherDetailsViewModel>()
-    val uiState = viewModel.uiState
+fun WeatherDetailsScreen(navController: NavController) {
 
-    uiState.copy(
+
+    val weatherDetailsPage =  navController.getBackStackEntry<WeatherDetailsPage>().toRoute<WeatherDetailsPage>()
+
+
+
+   // val viewModel = hiltViewModel<WeatherDetailsViewModel>()
+    var uiState = WeatherDetailsUiState()
+
+   uiState = uiState.copy(
         place = weatherDetailsPage.place,
         temp = weatherDetailsPage.temperature,
         feelsLike = weatherDetailsPage.feelsLike,
@@ -47,7 +55,7 @@ fun WeatherDetailsScreen(weatherDetailsPage: WeatherDetailsPage, navController: 
             Column {
                 Text(
                     modifier = Modifier.padding(start = 16.dp),
-                    text = uiState.place,
+                    text = uiState.place?: "",
                     color = MaterialTheme.colorScheme.onBackground
                 )
                 Text(
@@ -68,7 +76,9 @@ fun WeatherDetailsScreen(weatherDetailsPage: WeatherDetailsPage, navController: 
             }
         }
     }
-}
+
+
+    }
 
 @Serializable
 data class WeatherDetailsPage(
